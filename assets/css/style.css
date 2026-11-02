@@ -1518,6 +1518,11 @@
         padding: 10px !important;
     }
 
+    .product-cards .cards-grid {
+    display: blo;
+    grid-template-columns:  1fr;
+}
+
     /* Very narrow screens */
     .contact-section {
         padding: 28px 12px !important;
