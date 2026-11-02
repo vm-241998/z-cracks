@@ -1,20 +1,67 @@
-/* Fixed left-side icon (contact) */
+/* =====================================================
+   RESPONSIVE WEBSITE CSS
+   Cleaned & Organized Version
+   ===================================================== */
+
+/* ---------- GLOBAL ---------- */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+a {
+    transition: 0.3s ease;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+/* ---------- FIXED CONTACT ICON ---------- */
+
 #pageFixedIcon {
     position: fixed;
     left: 18px;
     top: 50%;
     transform: translateY(-50%);
     z-index: 1000;
-    /* Ensure popups (z-index:9999) appear above this icon */
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     width: 60px;
     height: 60px;
+
     background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
     border: 2px solid #d4103a;
+    border-radius: 50%;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
 }
 
 #pageFixedIcon img {
@@ -23,1772 +70,162 @@
     object-fit: contain;
 }
 
-/* Hover/focus label: show site name next to the circular icon without hiding the image */
-#pageFixedIcon {
-    position: fixed;
-    /* existing properties above... */
-}
-
 #pageFixedIcon::after {
-    content: 'Brand Website';
+    content: "Brand Website";
     position: absolute;
-    left: 60px;
-    /* place to the right of the circle */
+    left: 65px;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(10, 31, 68, 0.95);
-    /* match theme */
-    color: #fff;
+
     padding: 8px 12px;
+    background: rgba(10,31,68,0.95);
+    color: #fff;
+
     border-radius: 6px;
     white-space: nowrap;
     font-size: 14px;
     font-weight: 600;
+
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.18s ease, transform 0.18s ease;
-    z-index: 1200;
+    transition: 0.2s ease;
 }
 
-/* show on hover or keyboard focus */
 #pageFixedIcon:hover::after,
 #pageFixedIcon:focus::after,
 #pageFixedIcon:focus-within::after {
     opacity: 1;
-    transform: translateY(-50%) translateX(4px);
 }
 
-/* ensure the image doesn't hide — increase stacking context so image sits on top of circle content */
-#pageFixedIcon img {
-    position: relative;
-    z-index: 1300;
-}
-
-
-/* Mobile View Fix */
-@media (min-width: 412px) and (max-width: 767px) {
-    #pageFixedIcon::after {
-        left: 0;
-        top: -42px;
-        transform: translateY(0) translateX(0);
-        font-size: 13px;
-        padding: 6px 10px;
-    }
-
-    #pageFixedIcon {
-        right: 14px;
-        top: auto;
-        bottom: 18px;
-        transform: none;
-    }
-}
-
-.menu-toggle {
-    display: none;
-    background: transparent;
-    border: 2px solid transparent;
-    font-size: 22px;
-    padding: 8px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    position: absolute;
-    right: 16px;
-    top: 0;
-    z-index: 1300;
-}
-
-.mobile-nav {
-    display: none !important;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 100%;
-    background: #ffffff;
-    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
-    padding: 12px 16px;
-    border-radius: 0 0 8px 8px;
-    z-index: 1200;
-}
-
-.mobile-nav a {
-    display: block;
-    padding: 8px 0;
-    color: #2E8728;
-    text-decoration: none;
-}
-
-
-@keyframes headerFadeIn {
-    0% {
-        transform: translateY(-12px) scale(1.06);
-        opacity: 0;
-    }
-
-    60% {
-        transform: translateY(4px) scale(1.02);
-        opacity: 0.96;
-    }
-
-    100% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-    }
-
-}
+/* ---------- HEADER ---------- */
 
 .logo {
-    font-weight: 700;
     font-size: 20px;
+    font-weight: 700;
     letter-spacing: 2px;
 }
 
-/* Logo image support */
 .logo img {
-    height: 60px;
     width: auto;
-    display: block;
+    height: 60px;
+    object-fit: contain;
 }
 
-
-
-/* ========== HEADER ========== */
-/* apply the zoom reveal when .in-view is added */
 .header.in-view {
-    animation: zoomReveal 0.56s cubic-bezier(.2, .9, .2, 1) both;
     display: flex;
-    padding: 15px 0px;
     align-items: center;
     justify-content: space-between;
+    padding: 15px 0;
+    animation: zoomReveal 0.56s ease both;
 }
 
-/* animate when header becomes fixed (zoom-out + fade) and make it fixed on desktop when class applied */
 .container .header.fixed {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1400;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 100px;
-    background: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
-    animation: headerFadeIn 360ms cubic-bezier(.2, .9, .2, 1) both;
+
+    padding: 15px 40px;
+    background: rgba(255,255,255,0.98);
+    box-shadow: 0 6px 18px rgba(15,23,42,0.04);
+
+    animation: headerFadeIn 360ms ease both;
 }
 
-.email a {
-    margin-top: 8px;
-    text-decoration: none;
-    color: #fff;
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
 }
 
-
-
-/* ========= COMMON RESOLUTIONS ADJUSTMENTS ========= */
-/* Very large / high-res desktop (4K-ish and wide monitors) */
-@media (min-width: 2560px) {
-    .container {
-        max-width: 2100px;
-    }
-
-    .hero h1,
-    .hero .hero-title {
-        font-size: 72px !important;
-    }
-
-    .hero p,
-    .hero .hero-subtext {
-        font-size: 22px !important;
-    }
-
-    .product-cards .cards-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 28px;
-    }
-
-    .product-cards .product-card img {
-        height: 420px;
-    }
-
-    .flavor-box {
-        padding: 120px 90px;
-    }
-
-    .header {
-        padding: 30px 40px;
-    }
-
-    .logo img {
-        height: 88px;
-    }
-
-    .nav a {
-        font-size: 18px !important;
-        margin-left: 28px;
-    }
-
-    .hero {
-        padding: 80px 20px !important;
-    }
-
-    .hero .hero-cta {
-        padding: 14px 28px;
-        font-size: 16px !important;
-    }
-
-    .flavor-box h2 {
-        font-size: 40px !important;
-    }
-
-    .flavor-box p {
-        font-size: 20px !important;
-    }
-
-    .product-cards .section-title {
-        font-size: 34px !important;
-    }
-
-    .product-cards .section-subtext {
-        font-size: 20px !important;
-    }
-
-    .product-card .title-row {
-        font-size: 20px !important;
-    }
-
-    .product-card .desc {
-        font-size: 16px !important;
-    }
-
-    /* Contact & footer large screen tweaks */
-    .contact-section {
-        padding: 120px 60px;
-    }
-
-    .contact-section .contact-grid {
-        grid-template-columns: 2fr 1fr;
-        max-width: 1800px;
-    }
-
-    .contact-left h3 {
-        font-size: 32px !important;
-    }
-
-    .contact-left p.lead {
-        font-size: 26px !important;
-    }
-
-    .contact-left .contact-info {
-        font-size: 20px !important;
-    }
-
-    .contact-form label {
-        font-size: 18px !important;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        font-size: 18px !important;
-        padding: 14px 16px;
-    }
-
-    .contact-form .submit-btn {
-        padding: 14px 26px;
-        font-size: 18px !important;
-    }
-
-    .copyright-section {
-        font-size: 16px !important;
-    }
-}
-
-/* Large desktop / Full HD */
-@media (min-width: 1920px) and (max-width: 2559px) {
-    .container {
-        max-width: 1400px;
-    }
-
-    .hero h1,
-    .hero .hero-title {
-        font-size: 56px !important;
-    }
-
-    .hero p,
-    .hero .hero-subtext {
-        font-size: 20px !important;
-    }
-
-    .product-cards .cards-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 26px;
-    }
-
-    .product-cards .product-card img {
-        height: 360px;
-    }
-
-    .header {
-        padding: 26px 36px;
-    }
-
-    .logo img {
-        height: 72px;
-    }
-
-    .nav a {
-        font-size: 17px !important;
-    }
-
-    .hero {
-        padding: 64px 20px;
-    }
-
-    .hero .hero-cta {
-        padding: 12px 26px !important;
-    }
-
-    .flavor-box h2 {
-        font-size: 34px !important;
-    }
-
-    .product-cards .section-title {
-        font-size: 32px !important;
-    }
-
-    .product-card .title-row {
-        font-size: 18px !important;
-    }
-
-    /* Contact & footer Full HD */
-    .contact-section {
-        padding: 96px 48px !important;
-    }
-
-    .contact-section .contact-grid {
-        grid-template-columns: 2fr 1fr !important;
-        max-width: 1300px;
-    }
-
-    .contact-left h3 {
-        font-size: 28px !important;
-    }
-
-    .contact-left p.lead {
-        font-size: 22px !important;
-    }
-
-    .contact-left .contact-info {
-        font-size: 18px !important;
-    }
-
-    .contact-form label {
-        font-size: 16px !important;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        font-size: 16px !important;
-        padding: 12px 14px !important;
-    }
-
-    .contact-form .submit-btn {
-        padding: 12px 22px !important;
-        font-size: 16px !important;
-    }
-
-    .copyright-section {
-        font-size: 15px !important;
-    }
-}
-
-/* Common laptop / mid-size screens (1366x768) */
-@media (min-width: 1366px) and (max-width: 1919px) {
-
-    .hero h1,
-    .hero .hero-title {
-        font-size: 46px !important;
-    }
-
-    .hero p,
-    .hero .hero-subtext {
-        font-size: 18px !important;
-    }
-
-    .product-cards.in-view {
-        padding: 0px 24px !important;
-    }
-
-    /* Product cards section heading + subtext base styles (moved from inline HTML) */
-    .product-card .title-row {
-        display: flex;
-        font-size: 22px !important;
-        align-items: center;
-        margin-bottom: 8px;
-        font-weight: 700;
-        color: #000;
-    }
-
-    .product-cards .section-title {
-        text-align: left;
-        font-weight: 700;
-        font-size: 32px !important;
-        margin-bottom: 14px !important;
-    }
-
-    .product-cards .section-subtext {
-        text-align: left;
-        color: #000;
-        font-size: 24px !important;
-        margin-bottom: 26px;
-    }
-
-    .product-cards .cards-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-    }
-
-    .product-cards .product-card img {
-        height: 300px;
-    }
-
-    .header {
-        padding: 22px 28px !important;
-    }
-
-    .logo img {
-        height: 64px !important;
-    }
-
-    .nav a {
-        font-size: 16px !important;
-    }
-
-    .hero {
-        padding: 56px 18px !important;
-    }
-
-    .hero .hero-cta {
-        padding: 12px 24px !important;
-    }
-
-    /* ========== FLAVOR SECTION ========== */
-
-    .flavor-section img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .flavor-box {
-        background: #012A10;
-        color: white;
-        padding: 70px 60px !important;
-    }
-
-    .flavor-box h3 {
-        letter-spacing: 2px;
-        font-size: 14px !important;
-        margin-bottom: 15px;
-    }
-
-    .flavor-box h2 {
-        font-size: 28px !important;
-        margin-bottom: 15px;
-    }
-
-    .flavor-box p {
-        line-height: 1.6;
-        font-size: 16px !important;
-    }
-
-    .flavor-box .cta-button {
-        display: inline-block;
-        margin-top: 20px;
-        background: #F7BC01;
-        color: #012A10;
-        padding: 10px 22px !important;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: 700;
-        letter-spacing: 0.6px;
-        border: 2px solid rgba(255, 255, 255, 0.95);
-        transition: background 180ms ease, color 180ms ease, transform 120ms ease;
-    }
-
-    .flavor-box .cta-button:hover {
-        background: #ffffff;
-        color: #2E8728;
-        transform: translateY(-1px);
-    }
-
-    .flavor-section {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        margin-top: 60px;
-    }
-
-    .flavor-box h2 {
-        font-size: 30px !important;
-    }
-
-    .product-cards .section-title {
-        font-size: 28px !important;
-    }
-
-    /* Contact & laptop */
-    .contact-section {
-        padding: 72px 40px !important;
-    }
-
-    .contact-section .contact-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 28px;
-        max-width: 1100px;
-        margin: 0 auto;
-        align-items: start;
-    }
-
-    .contact-left h3 {
-        font-size: 24px !important;
-    }
-
-    .contact-left p.lead {
-        font-size: 20px !important;
-    }
-
-    .contact-left .contact-info {
-        font-size: 16px !important;
-    }
-
-    .contact-form label {
-        font-size: 15px !important;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        font-size: 15px !important;
-        padding: 11px 12px !important;
-    }
-
-    .contact-form .submit-btn {
-        padding: 11px 20px !important;
-        font-size: 15px !important;
-    }
-
-    .copyright-section {
-        font-size: 14px !important;
-    }
-}
-
-/* Tablet landscape / smaller laptops */
-@media (min-width: 1024px) and (max-width: 1365px) {
-
-    .hero h1,
-    .hero .hero-title {
-        font-size: 40px !important;
-    }
-
-    .hero p {
-        font-size: 16px !important;
-    }
-
-    .product-cards .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 22px;
-    }
-
-    .product-cards .product-card img {
-        height: 240px !important;
-    }
-
-    .flavor-box {
-        padding: 60px 40px !important;
-    }
-
-    .header {
-        padding: 18px 22px !important;
-    }
-
-    .logo img {
-        height: 56px !important;
-    }
-
-    .nav a {
-        font-size: 15px !important;
-    }
-
-    .hero {
-        padding: 48px 18px !important;
-    }
-
-    .hero .hero-cta {
-        padding: 10px 20px !important;
-    }
-
-    .flavor-box h2 {
-        font-size: 26px !important;
-    }
-
-    .product-cards .section-title {
-        font-size: 24px !important;
-    }
-
-    .product-card .title-row {
-        font-size: 15px !important;
-    }
-
-    .product-card .arrow {
-        margin-left: 10px !important;
-    }
-
-    .product-card .desc {
-        font-size: 16px !important;
-    }
-
-    /* Contact & tablet landscape */
-    .contact-section {
-        padding: 56px 28px !important;
-    }
-
-    .contact-section .contact-grid {
-        grid-template-columns: 1fr 1fr;
-        max-width: 900px;
-    }
-
-    .contact-left h3 {
-        font-size: 20px !important;
-    }
-
-    .contact-left p.lead {
-        font-size: 18px !important;
-    }
-
-    .contact-left .contact-info {
-        font-size: 15px !important;
-    }
-
-    .contact-form label {
-        font-size: 14px !important;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        font-size: 14px !important;
-        padding: 10px 12px !important;
-    }
-
-    .contact-form .submit-btn {
-        padding: 10px 18px !important;
-        font-size: 14px !important;
-    }
-
-}
-
-/* Tablet portrait / large phones (768px - 1023px) */
-@media (min-width: 768px) and (max-width: 1023px) {
-
-    .menu-toggle {
-        display: block;
-    }
-
-    .mobile-nav {
-        right: 0;
-        left: 0;
-        top: 64px;
-    }
-
-    .header.menu-open .mobile-nav {
-        display: block !important;
-        width: 50%;
-        left: 50%;
-        justify-self: center;
-    }
-
-    .logo img {
-        height: 36px !important;
-    }
-
-    .flavor-section {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        margin-top: 20px;
-    }
-
-    .flavor-section .flavor-box {
-        padding: 30px 20px !important;
-        background: #012A10;
-        color: white;
-    }
-
-    .flavor-section .flavor-box h3 {
-        font-size: 14px !important;
-    }
-
-    .flavor-section .flavor-box h2 {
-        font-size: 24px !important;
-    }
-
-    .flavor-section .flavor-box p {
-        font-size: 15px !important;
-        line-height: 1.6;
-    }
-
-    .flavor-section .flavor-img {
-        object-fit: fill;
-        width: 100%;
-        height: 100%;
-    }
-
-    .flavor-box .cta-button {
-        display: inline-block;
-        margin-top: 20px;
-        background: transparent;
-        color: #ffffff;
-        padding: 10px 22px !important;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: 700;
-        letter-spacing: 0.6px;
-        border: 2px solid rgba(255, 255, 255, 0.95);
-        transition: background 180ms ease, color 180ms ease, transform 120ms ease;
-    }
-
-    .product-cards.in-view .section-title {
-        font-size: 26px !important;
-    }
-
-    .product-cards.in-view .section-subtext {
-        font-size: 18px !important;
-    }
-
-    .product-cards .product-card .title-row {
-        font-size: 19px !important;
-        font-weight: 700;
-        display: inline-flex;
-        color: #0f172a;
-    }
-
-    .product-card .card-body {
-        padding: 10px !important;
-    }
-
-    .product-cards .product-card .desc {
-        font-size: 16px !important;
-    }
-
-    .product-cards {
-        padding: 32px 16px !important;
-    }
-
-    .product-card .arrow {
-        margin-left: 10px;
-    }
-
-    .product-card .desc {
-        font-size: 16px !important;
-    }
-
-    .product-cards .product-card img {
-        height: 240px !important;
-    }
-
-    .contact-section {
-        padding: 32px 16px !important;
-        color: #fff;
-    }
-
-    .contact-section .contact-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        max-width: 680px;
-        margin: 0 auto;
-        align-items: start;
-    }
-
-    .contact-left {
-        text-align: left;
-    }
-
-    .contact-section .contact-grid .section-left h3 {
-        font-size: 16px !important;
-    }
-
-    .contact-section .contact-grid .section-left p.lead {
-        font-size: 17px !important;
-    }
-
-    .contact-section .contact-grid .section-left .contact-info {
-        font-size: 14px !important;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        font-size: 14px !important;
-    }
-
-    .header {
-        padding: 16px 20px !important;
-    }
-
-    .events-grid {
-        grid-template-columns: 1fr;
-        gap: 22px;
-        padding: 0 12px !important;
-    }
-
-    .brand-product .container {
-        margin: 28px auto;
-        padding: 0 14px !important;
-    }
-
-    .brand-product .product-image {
-        max-height: 320px;
-    }
-
-    .product-cta {
-        grid-template-columns: 1fr;
-        text-align: left;
-        gap: 12px;
-    }
-
-    .product-cta .cta-left h2 {
-        font-size: 28px !important;
-    }
-
-    .nav {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-
-    .nav a {
-        margin-left: 0;
-        font-size: 14px !important;
-    }
-
-
-    /* Mobile menu toggle/button and mobile nav */
-    .menu-toggle {
-        display: none;
-        background: transparent;
-        border: 2px solid transparent;
-        font-size: 22px;
-        padding: 8px 10px;
-        border-radius: 6px;
-        cursor: pointer;
-    }
-
-    .mobile-nav {
-        display: none;
-        position: absolute;
-        right: 16px;
-        top: 74px;
-        background: #ffffff;
-        box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
-        padding: 12px 16px;
-        border-radius: 8px;
-        z-index: 1200;
-        min-width: 200px;
-    }
-
-    .mobile-nav a {
-        display: block;
-        padding: 8px 0;
-        color: #111827;
-        text-decoration: none;
-    }
-
-    .hero .hero-title {
-        font-size: 34px !important;
-    }
-
-    .hero .hero-subtext {
-        font-size: 16px !important;
-    }
-
-    .hero h1,
-    .hero .hero-title {
-        font-size: 34px !important;
-    }
-
-    .hero p {
-        font-size: 15px !important;
-    }
-
-    .product-cards .cards-grid {
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 20px;
-    }
-
-    .product-cards .product-card img {
-        height: 200px;
-    }
-
-    .header {
-        padding: 16px 18px !important;
-    }
-
-    .logo img {
-        height: 48px !important;
-    }
-
-    .nav a {
-        font-size: 14px !important;
-    }
-
-    .hero {
-        padding: 40px 16px !important;
-    }
-
-    .hero .hero-cta {
-        padding: 10px 18px !important;
-    }
-
-    .flavor-box h2 {
-        font-size: 22px !important;
-    }
-
-    .flavor-box p {
-        font-size: 15px !important;
-    }
-
-    .product-cards .section-title {
-        font-size: 22px !important;
-    }
-
-    /* Contact & tablet portrait */
-    .contact-section {
-        padding: 48px 22px;
-    }
-
-    .contact-left h3 {
-        font-size: 18px !important;
-    }
-
-    .contact-left p.lead {
-        font-size: 16px !important;
-    }
-
-    .contact-left .contact-info {
-        font-size: 14px !important;
-    }
-
-    .contact-form label {
-        font-size: 13px !important;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        font-size: 13px !important;
-        padding: 9px 10px !important;
-    }
-
-    .contact-form .submit-btn {
-        padding: 10px 16px !important;
-        font-size: 13px !important;
-    }
-
-    .product-section .product-image,
-    .brand-product .product-image,
-    .product-image {
-        width: 80%;
-        max-height: 420px;
-        object-fit: cover;
-        border-radius: 6px;
-        box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
-    }
-
-    .container .header.fixed {
-        padding: 10px 30px !important;
-    }
-
-    .product-section .container h1 {
-        font-size: 24px !important;
-    }
-
-    .product-section .container .product-desc {
-        font-size: 15px !important;
-    }
-
-    .container .product-cta.in-view {
-        padding: 20px 100px !important;
-        flex-direction: row;
-        justify-items: center;
-    }
-
-    .product-cta .cta-left h2 {
-        font-size: 20px !important;
-    }
-
-    .product-cta .cta-right .btn-ghost {
-        font-size: 15px !important;
-        padding: 5px 8px !important;
-    }
-
-    .product-cta {
-        flex-direction: column;
-        padding: 36px 200px !important;
-        gap: 20px;
-    }
-
-    .events-grid {
-        grid-template-columns: repeat(1, 1fr);
-    }
-}
-
-/* Common mobile widths (iPhone / Android mid-range) */
-@media (min-width: 412px) and (max-width: 767px) {
-
-    .hero h1,
-    .hero .hero-title {
-        font-size: 30px !important;
-    }
-
-    .hero p {
-        font-size: 15px !important;
-    }
-
-    .product-cards .cards-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 18px;
-    }
-
-    .product-cards .product-card img {
-        height: 160px !important;
-    }
-
-    .product-cards .desc {
-        font-size: 14px !important;
-    }
-
-    .flavor-section img {
-        max-height: 300px !important;
-    }
-
-    .header {
-        padding: 12px 14px !important;
-    }
-
-    .logo img {
-        height: 50px !important;
-    }
-
-    .nav a {
-        font-size: 13px !important;
-    }
-
-    .hero {
-        padding: 12px 14px !important;
-    }
-
-    .hero .hero-cta {
-        padding: 8px 16px !important;
-        font-size: 13px !important;
-    }
-
-    .flavor-section {
-        padding: 10px 25px !important;
-        font-size: 13px !important;
-    }
-
-    .flavor-box {
-        padding-top: 20px !important;
-    }
-
-    .flavor-box h2 {
-        font-size: 20px !important;
-    }
-
-    .flavor-box p {
-        font-size: 14px !important;
-    }
-
-    .product-cards .section-title {
-        font-size: 20px !important;
-    }
-
-    .product-card .title-row {
-        font-size: 13px !important;
-    }
-
-
-
-    /* Contact & common mobile */
-    .contact-section {
-        padding: 36px 18px;
-    }
-
-    .contact-section .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 18px;
-        max-width: 520px;
-    }
-
-    .contact-section .contact-grid .section-left {
-        padding-bottom: 20px;
-    }
-
-    .contact-left h3 {
-        font-size: 17px !important;
-    }
-
-    .contact-left p.lead {
-        font-size: 15px !important;
-    }
-
-    .contact-left .contact-info {
-        font-size: 13px !important;
-    }
-
-    .contact-form label {
-        font-size: 13px !important;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        font-size: 13px !important;
-        padding: 8px 10px;
-    }
-
-    .contact-form .submit-btn {
-        padding: 10px 14px;
-        font-size: 13px !important;
-    }
-
-    .footer {
-        padding: 24px 20px !important;
-    }
-
-    .copyright-section {
-        font-size: 13px !important;
-    }
-}
-
-/* Smaller phones (iPhone SE / many Android entry-level) */
-@media (min-width: 360px) and (max-width: 411px) {
-
-    .container .header {
-        position: fixed !important;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1400;
-        height: 64px;
-        display: flex;
-        align-items: center;
-        background: rgba(255, 255, 255, 0.98);
-        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
-    }
-
-    .mobile-nav {
-        top: 64px !important;
-    }
-
-    .hero.in-view .hero-title {
-        font-size: 28px !important;
-    }
-
-    .hero.in-view .hero-subtext {
-        font-size: 16px !important;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav {
-        display: none;
-    }
-
-    .mobile-nav {
-        right: 12px;
-        top: 64px;
-    }
-
-    .header.menu-open .mobile-nav {
-        display: block;
-    }
-
-    .logo img {
-        height: 50px;
-    }
-
-    .flavor-section {
-        display: block;
-        margin-top: 60px;
-    }
-
-    .flavor-box h2 {
-        font-size: 20px !important;
-    }
-
-    .flavor-box p {
-        font-size: 15px !important;
-    }
-
-    .hero h1 {
-        font-size: 28px !important;
-    }
-
-    .hero p {
-        font-size: 15px !important;
-    }
-
-    .flavor-box h2 {
-        font-size: 22px !important;
-    }
-
-    .flavor-box p {
-        font-size: 15px !important;
-    }
-
-    .product-card img {
-        height: 120px;
-    }
-
-    .contact-left h3 {
-        font-size: 16px !important;
-    }
-
-    .contact-left p.lead {
-        font-size: 16px !important;
-    }
-
-    .nav {
-        margin-top: 10px;
-    }
-
-    .nav a {
-        margin-left: 0;
-        margin-right: 14px;
-        display: inline-block;
-    }
-
-    .hero h1,
-    .hero .hero-title {
-        font-size: 26px !important;
-    }
-
-    .hero p {
-        font-size: 14px !important;
-    }
-
-    .product-cards .section-subtext {
-        font-size: 16px !important;
-    }
-
-    .product-cards .product-card img {
-        height: 240px;
-    }
-
-    .product-cards.in-view {
-        padding: 28px 12px !important;
-    }
-
-    .product-cards.in-view .cards-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-
-    .flavor-box {
-        padding: 28px 16px !important;
-    }
-
-    /* Ensure flavor section stacks nicely on narrow phones (360px) */
-    .flavor-section {
-        display: grid;
-        grid-template-columns: 1fr;
-        align-items: start;
-        margin-top: 28px;
-    }
-
-    .flavor-section .flavor-img {
-        width: 100%;
-        object-fit: cover;
-        display: block;
-    }
-
-    .flavor-box {
-        padding: 18px 12px !important;
-        color: white;
-    }
-
-    .flavor-box h2 {
-        font-size: 18px !important;
-    }
-
-    .flavor-box p {
-        font-size: 13px !important;
-        line-height: 1.5;
-    }
-
-    .flavor-box .cta-button {
-        display: inline-block;
-        margin-top: 10px;
-        background: transparent;
-        color: #ffffff;
-        padding: 5px 15px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: 700;
-        letter-spacing: 0.6px;
-        border: 2px solid rgba(255, 255, 255, 0.95);
-        transition: background 180ms ease, color 180ms ease, transform 120ms ease;
-    }
-
-    .header {
-        padding: 10px 12px;
-    }
-
-    .logo img {
-        height: 46px;
-    }
-
-    .nav a {
-        font-size: 12px !important;
-    }
-
-    .hero {
-        padding: 28px 12px;
-    }
-
-    .hero .hero-cta {
-        padding: 8px 14px;
-        font-size: 12px !important;
-    }
-
-    .flavor-box h2 {
-        font-size: 18px !important;
-    }
-
-    .flavor-box p {
-        font-size: 13px !important;
-    }
-
-    .product-cards .section-title {
-        font-size: 18px !important;
-    }
-
-    .product-card .title-row {
-        font-size: 22px !important;
-        align-items: center;
-        display: inline-flex;
-        font-weight: 700;
-        color: #000;
-    }
-
-    /* Contact & smaller phones */
-    .contact-section {
-        padding: 32px 14px;
-        color: #fff;
-    }
-
-    .contact-section .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-
-    .section-left {
-        margin-bottom: 10px;
-    }
-
-    .section-right {
-        margin-top: 30px;
-    }
-
-    .contact-left h3 {
-        font-size: 16px !important;
-    }
-
-    .contact-left p.lead {
-        font-size: 14px !important;
-    }
-
-    .contact-left .contact-info {
-        font-size: 13px !important;
-    }
-
-    .contact-form label {
-        font-size: 12px !important;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        font-size: 12px !important;
-        padding: 8px 10px;
-    }
-
-    .contact-form .submit-btn {
-        padding: 9px 12px;
-        font-size: 12px !important;
-    }
-
-    .container .header {
-        padding: 15px 20px;
-    }
-
-    .container .header.fixed {
-        padding: 10px 15px;
-    }
-
-    .product-section .container .product-title {
-        font-size: 24px !important;
-    }
-
-    .product-section .container .product-desc {
-        font-size: 15px !important;
-    }
-
-    .container .product-cta.in-view {
-        padding: 20px 15px;
-        flex-direction: column;
-    }
-
-    .product-cta .cta-left h2 {
-        font-size: 20px !important;
-    }
-
-    .product-cta .cta-right .btn-ghost {
-        font-size: 15px !important;
-        padding: 5px 8px;
-    }
-
-    .product-cta {
-        padding: 20px 10px;
-    }
-}
-
-/* Very narrow / extra small (<=360px) */
-@media (max-width: 359px) {
-
-    .hero h1,
-    .hero .hero-title {
-        font-size: 22px !important;
-    }
-
-    .hero p {
-        font-size: 13px !important;
-    }
-
-    .product-cards .product-card img {
-        height: 120px;
-    }
-
-    .flavor-box {
-        padding: 22px 12px !important;
-    }
-
-    /* Very narrow phones: tighten flavor section for small screens */
-    .flavor-section {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 10px;
-        margin-top: 20px;
-    }
-
-    .flavor-section .flavor-img {
-        width: 100%;
-        height: auto;
-        max-height: 180px;
-        object-fit: cover;
-        border-radius: 6px;
-    }
-
-    .flavor-box {
-        padding: 14px 10px !important;
-    }
-
-    .flavor-box h2 {
-        font-size: 16px !important;
-    }
-
-    .flavor-box p {
-        font-size: 12px !important;
-        line-height: 1.45;
-    }
-
-    .events-grid {
-        display: block !important;
-    }
-
-    .events-hero .container {
-        padding: 10px !important;
-    }
-
-    .product-cards .cards-grid {
-        display: block;
-        grid-template-columns: 1fr;
-    }
-
-    /* Very narrow screens */
-    .contact-section {
-        padding: 28px 12px !important;
-    }
-
-    .contact-section .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-        max-width: 380px;
-    }
-
-    .contact-left h3 {
-        font-size: 15px !important;
-    }
-
-    .contact-left p.lead {
-        font-size: 13px !important;
-    }
-
-    .contact-left .contact-info {
-        font-size: 12px !important;
-    }
-
-    .contact-form label {
-        font-size: 12px !important;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        font-size: 12px !important;
-        padding: 7px 8px !important;
-    }
-
-    .contact-form .submit-btn {
-        padding: 8px 10px;
-        font-size: 12px !important;
-    }
-
-    .copyright-section {
-        font-size: 12px !important;
-    }
-
-    .events-listing {
-        background: transparent;
-        padding: 0px 30px !important;
-    }
-
-    .footer {
-        padding: 20px 10px !important;
-    }
-}
-
-/* Ensure images remain responsive and headings scale smoothly */
-.hero .container,
-.product-cards .cards-grid,
-.flavor-section {
-    transition: padding 180ms ease, grid-template-columns 160ms ease;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* =================================================== */
 .nav a {
-    margin-left: 30px;
+    margin: 0;
     text-decoration: none;
     color: #2E8728;
     font-size: 15px;
-    transition: 0.3s;
 }
 
 .nav a:hover {
     color: #F7BC01;
 }
 
-/* ========== HERO SECTION ========== */
-.hero {
-    text-align: left;
-    padding: 40px 20px !important;
-}
+.menu-toggle {
+    display: none;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1300;
 
-.hero h1 {
-    font-size: 42px !important;
-    font-weight: 700;
-    color: #2E8728;
-    margin-bottom: 10px;
-}
-
-.hero p {
-    font-size: 18px !important;
-    margin-bottom: 25px;
-}
-
-.hero .hero-cta {
-    display: inline-block;
-    background: #012A10;
-    color: #F7BC01;
-    text-decoration: none;
-    padding: 10px 20px;
+    padding: 8px 10px;
+    background: transparent;
+    border: 0;
     border-radius: 6px;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: .6px;
-    text-transform: uppercase;
-    transition: background 160ms ease, transform 120ms ease;
+    font-size: 22px;
+    cursor: pointer;
 }
 
-.hero .hero-cta:hover {
-    background: #2E8728;
-    transform: translateY(-1px);
-}
+.mobile-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 12px;
+    left: auto;
+    z-index: 1200;
 
-/* Hero reveal (initial state + in-view staggered animation) */
-.hero .hero-title,
-.hero .hero-subtext,
-.hero .hero-cta {
-    opacity: 0;
-    transform: translateY(8px);
-}
+    width: 220px;
+    max-width: calc(100vw - 24px);
+    padding: 12px 16px;
 
-.hero.in-view .hero-title {
-    animation: fadeInUp 0.6s ease forwards;
-    animation-delay: 0.12s;
-}
-
-.hero.in-view .hero-subtext {
-    animation: fadeInUp 0.6s ease forwards;
-    animation-delay: 0.36s;
-    color: #000 !important;
-}
-
-.hero.in-view .hero-cta {
-    animation: fadeInUp 0.6s ease forwards;
-    animation-delay: 0.6s;
-}
-
-.product-cards.in-view {
-    padding: 30px 24px !important;
-}
-
-/* ========== FLAVOR SECTION ========== */
-
-.flavor-section {
-    margin-top: 35px;
-}
-
-.flavor-box h3 {
-    letter-spacing: 2px;
-    font-size: 14px;
-    margin-bottom: 15px;
-}
-
-.flavor-box h2 {
-    font-size: 28px;
-    margin-bottom: 15px;
-}
-
-.flavor-box p {
-    line-height: 1.6;
-    font-size: 16px;
-}
-
-.flavor-box .cta-button {
-    display: inline-block;
-    margin-top: 20px;
-    background: #F7BC01;
-    color: #012A10;
-    padding: 10px 22px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 700;
-    letter-spacing: 0.6px;
-    border: 2px solid rgba(255, 255, 255, 0.95);
-    transition: background 180ms ease, color 180ms ease, transform 120ms ease;
-}
-
-.flavor-box .cta-button:hover {
-    background: #ffffff;
-    color: #2E8728;
-    transform: translateY(-1px);
-}
-
-.back-link {
-    color: #2E8728;
-    display: inline-block;
-    margin-bottom: 20px;
-    text-decoration: none;
-}
-
-.product-cards .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
-    max-width: 1100px;
-    margin: 10px auto;
-}
-
-.product-card {
-    color: #2E8728;
     background: #fff;
     border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
-    transition: transform 0.35s cubic-bezier(.2, .9, .2, 1), box-shadow 0.35s;
-    transform-origin: center;
-    opacity: 0;
-    text-decoration: none;
-    transform: translateY(12px);
+    box-shadow: 0 10px 30px rgba(2,6,23,0.08);
 }
 
-.product-card img {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
+.mobile-nav a {
     display: block;
-    transition: transform 0.35s ease;
-}
-
-.product-card .card-body {
-    padding: 18px;
-}
-
-.product-card .title-row {
-    display: flex;
-    font-size: 22px;
-    align-items: center;
-    margin-bottom: 8px;
-    font-weight: 700;
-    color: #0f172a;
-}
-
-.product-card .title-row:hover {
+    padding: 10px 0;
     color: #2E8728;
+    text-decoration: none;
 }
 
-.product-card .arrow {
-    transition: transform 0.22s ease;
-    display: inline-block;
-    font-size: xx-large;
+.mobile-nav a:hover {
+    color: #F7BC01;
 }
 
-.product-card .desc {
-    color: #2E8728;
-    font-size: 18px;
-    line-height: 1.5;
+.header.menu-open .mobile-nav {
+    display: block;
 }
 
-.sub-text {
-    text-align: left;
-    color: #000 !important;
-    margin-bottom: 26px;
+/* ---------- HEADER ANIMATIONS ---------- */
+
+@keyframes headerFadeIn {
+    from {
+        transform: translateY(-12px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
-.product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 18px 36px rgba(15, 23, 42, 0.12);
-}
+@keyframes zoomReveal {
+    from {
+        opacity: 0;
+        transform: scale(1.04) translateY(-8px);
+    }
 
-.product-card:hover img {
-    transform: scale(1.04);
-}
-
-.product-card:hover .arrow {
-    transform: translateX(6px);
+    to {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 @keyframes fadeInUp {
@@ -1798,57 +235,253 @@ img {
     }
 }
 
+/* ---------- HERO SECTION ---------- */
 
-/* Section title/subtext initial state (animations triggered when section becomes visible) */
+.hero {
+    text-align: left;
+    padding: 40px 20px;
+}
+
+.hero h1,
+.hero .hero-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: #2E8728;
+    margin-bottom: 10px;
+}
+
+.hero p,
+.hero .hero-subtext {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.hero .hero-cta {
+    display: inline-block;
+    padding: 10px 20px;
+
+    background: #012A10;
+    color: #F7BC01;
+
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .6px;
+    text-transform: uppercase;
+}
+
+.hero .hero-cta:hover {
+    background: #2E8728;
+}
+
+.hero .hero-title,
+.hero .hero-subtext,
+.hero .hero-cta {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+.hero.in-view .hero-title {
+    animation: fadeInUp .6s ease .12s forwards;
+}
+
+.hero.in-view .hero-subtext {
+    animation: fadeInUp .6s ease .36s forwards;
+    color: #000;
+}
+
+.hero.in-view .hero-cta {
+    animation: fadeInUp .6s ease .6s forwards;
+}
+
+/* ---------- FLAVOR SECTION ---------- */
+
+.flavor-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    margin-top: 35px;
+}
+
+.flavor-section .flavor-img,
+.flavor-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.flavor-box {
+    padding: 50px 40px;
+    background: #012A10;
+    color: #fff;
+}
+
+.flavor-box h3 {
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.flavor-box h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.flavor-box p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.flavor-box .cta-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 22px;
+
+    background: #F7BC01;
+    color: #012A10;
+
+    border: 2px solid #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.flavor-box .cta-button:hover {
+    background: #fff;
+    color: #2E8728;
+}
+
+/* ---------- PRODUCT CARDS ---------- */
+
+.product-cards.in-view {
+    padding: 30px 24px;
+}
+
+.product-cards .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+
+    max-width: 1100px;
+    margin: 10px auto;
+}
+
+.product-card {
+    overflow: hidden;
+    background: #fff;
+    color: #2E8728;
+
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.product-card img {
+    display: block;
+    width: 100%;
+    height: clamp(180px, 22vw, 320px);
+    object-fit: contain;
+    transition: transform .35s ease;
+}
+
+.product-card .card-body {
+    padding: 18px;
+}
+
+.product-card .title-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+
+    color: #0f172a;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.product-card .desc {
+    color: #2E8728;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 36px rgba(15,23,42,0.12);
+}
+
+.product-card:hover img {
+    transform: scale(1.03);
+}
+
+.product-card .arrow {
+    display: inline-block;
+    font-size: xx-large;
+    transition: transform .22s ease;
+}
+
+.product-card:hover .arrow {
+    transform: translateX(6px);
+}
+
 .section-title,
 .section-subtext {
     opacity: 0;
     transform: translateY(8px);
 }
 
-/* When product-cards container scrolls into view, animate heading, subtext and cards */
-.product-cards.in-view .section-subtext {
-    animation: fadeInUp 0.45s ease forwards;
-    animation-delay: 0.18s;
-    color: #000 !important;
+.product-cards.in-view .section-title {
+    animation: fadeInUp .45s ease .05s forwards;
 }
 
-.product-cards.in-view .section-title {
-    animation: fadeInUp 0.45s ease forwards;
-    animation-delay: 0.05s;
+.product-cards.in-view .section-subtext {
+    animation: fadeInUp .45s ease .18s forwards;
 }
 
 .product-cards.in-view .product-card {
-    animation: fadeInUp 0.45s ease both;
+    animation: fadeInUp .45s ease both;
 }
 
 .product-cards.in-view .product-card:nth-child(1) {
-    animation-delay: 0.3s;
+    animation-delay: .3s;
 }
 
 .product-cards.in-view .product-card:nth-child(2) {
-    animation-delay: 0.45s;
+    animation-delay: .45s;
 }
 
 .product-cards.in-view .product-card:nth-child(3) {
-    animation-delay: 0.6s;
+    animation-delay: .6s;
 }
 
 .product-cards.in-view .product-card:nth-child(4) {
-    animation-delay: 0.75s;
+    animation-delay: .75s;
 }
 
-/* ========== CONTACT / GET IN TOUCH SECTION ========== */
+/* ---------- CONTACT SECTION ---------- */
+
 .contact-section {
+    padding: 48px 20px;
     background: #012A10;
     color: #fff;
-    padding: 48px 20px;
 }
 
+.contact-section .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: start;
+}
 
 .contact-left h3 {
-    letter-spacing: 3px;
     font-size: 18px;
+    letter-spacing: 3px;
     margin-bottom: 10px;
 }
 
@@ -1858,7 +491,7 @@ img {
 }
 
 .contact-left .contact-info {
-    color: rgba(255, 255, 255, 0.95);
+    color: rgba(255,255,255,.95);
     line-height: 1.8;
 }
 
@@ -1867,20 +500,21 @@ img {
 }
 
 .contact-form label {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 13px;
     display: block;
     margin-bottom: 6px;
+    color: rgba(255,255,255,.85);
+    font-size: 13px;
 }
 
 .contact-form input,
 .contact-form textarea {
     width: 100%;
     padding: 10px 12px;
-    border: 1px solid rgba(255, 255, 255, 0.24);
+    margin-bottom: 12px;
+
+    border: 1px solid rgba(255,255,255,.24);
     border-radius: 4px;
     outline: none;
-    margin-bottom: 12px;
 }
 
 .contact-form textarea {
@@ -1889,81 +523,50 @@ img {
 }
 
 .contact-form .submit-btn {
+    padding: 10px 18px;
     background: #fff;
     color: #012A10;
-    padding: 10px 18px;
-    border-radius: 4px;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
     font-weight: 700;
 }
 
-/* ========== COPYRIGHT / FOOTER ========== */
-.copyright-section {
-    background: #012A10;
-    color: #F7BC01;
-    padding: 18px 10px;
-    text-align: center;
-    font-size: 14px;
-}
-
-.copyright-section a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.copyright-section a:hover {
-    text-decoration: underline;
-}
-
-
-/* ========== PRODUCT PAGES RESPONSIVE HELPERS ========== */
+/* ---------- PRODUCT DETAIL PAGES ---------- */
 
 .product-desc {
     font-size: 18px;
 }
 
-.product-section .product-image,
-.brand-product .product-image,
-.product-image {
-    width: 65%;
-    justify-items: center;
-    border-radius: 6px;
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-}
-
 .product-section .container,
-.brand-product .container {
-    padding: 0 18px;
-}
-
-/* product-cta base layout is defined later in the Product detail section; no duplicate here */
-
-/* Make product cards grid responsive (covers product-cards and events grid) */
-.cards-grid,
-.events-grid {
-    box-sizing: border-box;
-}
-
-
-/* ================= Z-CRACKS Product Pages (scoped) ================= */
-.brand-product {
-    font-family: "Bebas Neue";
-    color: #111;
-}
-
 .brand-product .container {
     max-width: 1100px;
     margin: 40px auto;
     padding: 0 18px;
 }
 
+.product-section .product-image,
+.brand-product .product-image,
+.product-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    max-height: 420px;
+    height: auto;
+    margin: 0 auto;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.brand-product {
+    color: #111;
+    font-family: "Bebas Neue", sans-serif;
+}
+
 .brand-product .product-title {
-    letter-spacing: 3px;
-    font-weight: 700;
     color: #0f172a;
+    font-weight: 700;
+    letter-spacing: 3px;
     margin-bottom: 12px;
     text-transform: uppercase;
 }
@@ -1974,41 +577,35 @@ img {
     margin-bottom: 22px;
 }
 
-.brand-product .product-image {
-    width: 100%;
-    max-height: 420px;
-    object-fit: cover;
-    border-radius: 6px;
-    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
-}
-
-.brand-product .back-link {
+.back-link {
     display: inline-block;
     margin-bottom: 18px;
     color: #2E8728;
     text-decoration: none;
-    font-weight: 600;
 }
 
-.brand-product a {
-    text-decoration: none;
-}
+/* ---------- PRODUCT CTA ---------- */
 
-/* Product detail CTA section */
 .product-cta {
     display: flex;
-    flex-direction: row;
-    gap: 40px;
     align-items: center;
-    padding: 36px 150px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+
+    padding: 36px 40px;
     opacity: 0;
     transform: translateY(12px);
+}
+
+.product-cta.in-view {
+    animation: fadeInUp .6s ease forwards;
 }
 
 .product-cta .cta-left h2 {
     color: #2E8728;
     font-size: 40px;
-    margin: 0 0 6px 0;
+    margin: 0 0 6px;
     letter-spacing: 1px;
 }
 
@@ -2018,13 +615,16 @@ img {
 }
 
 .product-cta .cta-right .btn-ghost {
-    text-decoration: none;
+    display: inline-block;
     padding: 12px 20px;
-    border: 2px solid #2E8728;
+
     background: #F7BC01;
     color: #012A10;
-    font-weight: 700;
+    border: 2px solid #2E8728;
     border-radius: 4px;
+
+    font-weight: 700;
+    text-decoration: none;
 }
 
 .btn-ghost:hover {
@@ -2032,33 +632,27 @@ img {
     color: #F7BC01;
 }
 
-.product-cta.in-view {
-    animation: fadeInUp 0.6s ease forwards;
-}
+/* ---------- EVENTS PAGE ---------- */
 
-
-
-/* ========== EVENTS PAGE ========== */
 .events-hero {
-    background: #ffffff;
-    padding: 0px 30px;
+    padding: 0 30px;
+    background: #fff;
 }
 
 .events-hero .events-title {
-    letter-spacing: 4px;
     color: #0f172a;
     font-weight: 700;
+    letter-spacing: 4px;
     margin-bottom: 6px;
 }
 
 .events-hero .events-subtitle {
+    color: #0f172a;
     font-size: 22px;
     font-weight: 700;
-    color: #0f172a;
     margin-bottom: 10px;
 }
 
-/* initial state and reveal animation for events hero */
 .events-hero .events-title,
 .events-hero .events-subtitle {
     opacity: 0;
@@ -2066,18 +660,14 @@ img {
 }
 
 .events-hero.in-view .events-title {
-    animation: fadeInUp 0.6s ease forwards;
-    animation-delay: 0.12s;
+    animation: fadeInUp .6s ease .12s forwards;
 }
 
 .events-hero.in-view .events-subtitle {
-    animation: fadeInUp 0.6s ease forwards;
-    animation-delay: 0.36s;
-    color: #000;
+    animation: fadeInUp .6s ease .36s forwards;
 }
 
 .events-listing {
-    background: transparent;
     padding: 30px 20px 60px;
 }
 
@@ -2087,10 +677,6 @@ img {
     gap: 36px;
     max-width: 1100px;
     margin: 0 auto;
-}
-
-.event-card {
-    background: transparent;
 }
 
 .event-link {
@@ -2114,39 +700,17 @@ img {
     text-decoration: none;
 }
 
+/* ---------- FOOTER ---------- */
 
-/* zoom reveal keyframes for header and page elements */
-@keyframes zoomReveal {
-    from {
-        opacity: 0;
-        transform: scale(1.06) translateY(-8px);
-    }
-
-    to {
-        opacity: 1;
-        transform: none;
-    }
-}
-
-/* utility class — can be applied to any major page block to get same reveal */
-.zoom-reveal {
-    opacity: 0;
-    transform: scale(1.04) translateY(6px);
-}
-
-.zoom-reveal.in-view {
-    animation: zoomReveal 0.56s cubic-bezier(.2, .9, .2, 1) both;
-}
-
-/* Footer styles (pruned) */
 .footer {
-    background: #faf9f6;
-    padding: 48px 0 24px 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 64px;
     flex-wrap: wrap;
+    gap: 64px;
+
+    padding: 48px 20px 24px;
+    background: #faf9f6;
 }
 
 .footer-col {
@@ -2157,22 +721,9 @@ img {
 }
 
 .footer-connect {
-    min-width: 320px;
+    min-width: 280px;
     max-width: 400px;
 }
-
-
-
-.footer-bar-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 24px;
-    background: #faf9f6;
-    margin-top: 0;
-    margin-bottom: 30px;
-}
-
 
 .footer a {
     color: #012A10;
@@ -2187,18 +738,34 @@ img {
     color: #2E8728;
 }
 
-@media (max-width: 600px) {
-    .footer-bar-row {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0 8px;
-        gap: 4px;
-    }
+.footer-bar-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    margin-bottom: 30px;
+    background: #faf9f6;
+}
 
-    .footer-bar-row .footer-logo {
-        font-size: 1.1rem;
-        margin-top: 4px;
-    }
+.copyright-section {
+    padding: 18px 10px;
+    background: #012A10;
+    color: #F7BC01;
+    text-align: center;
+    font-size: 14px;
+}
+
+.copyright-section a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* ---------- EMAIL / WHATSAPP HINT ---------- */
+
+.email a {
+    margin-top: 8px;
+    text-decoration: none;
+    color: #fff;
 }
 
 .email-wrapper,
@@ -2213,22 +780,21 @@ img {
     position: absolute;
     top: calc(100% + 6px);
     left: 0;
-    color: #fff;
+    z-index: 9999;
+
     padding: 6px 8px;
+    color: #fff;
     border-radius: 4px;
     font-size: 13px;
     white-space: nowrap;
-    z-index: 9999;
 }
 
 .email-hint {
-    background: rgba(0, 0, 0, 0.85);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background: rgba(0,0,0,.85);
 }
 
 .whatsapp-hint {
-    background: #25D366;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background: rgba(0,0,0,.85);
 }
 
 .email-wrapper:hover .email-hint,
@@ -2238,10 +804,241 @@ img {
     display: block;
 }
 
-@media (max-width: 767px) {
+/* =====================================================
+   RESPONSIVE BREAKPOINTS
+   ===================================================== */
+
+/* ---------- 4K DESKTOP: 2560px+ ---------- */
+
+@media (min-width: 2560px) {
+
+    .container {
+        max-width: 2100px;
+    }
+
+    .hero h1,
+    .hero .hero-title {
+        font-size: 72px;
+    }
+
+    .hero p,
+    .hero .hero-subtext {
+        font-size: 22px;
+    }
+
+    .product-cards .cards-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 28px;
+    }
+
+    .logo img {
+        height: 88px;
+    }
+
+    .nav a {
+        font-size: 18px;
+    }
+
+    .flavor-box {
+        padding: 120px 90px;
+    }
+
+    .contact-section {
+        padding: 120px 60px;
+    }
+}
+
+/* ---------- FULL HD: 1920px–2559px ---------- */
+
+@media (min-width: 1920px) and (max-width: 2559px) {
+
+    .container {
+        max-width: 1400px;
+    }
+
+    .hero h1,
+    .hero .hero-title {
+        font-size: 56px;
+    }
+
+    .hero p,
+    .hero .hero-subtext {
+        font-size: 20px;
+    }
+
+    .product-cards .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+    }
+
+    .logo img {
+        height: 72px;
+    }
+
+    .flavor-box h2 {
+        font-size: 34px;
+    }
+
+    .contact-section {
+        padding: 96px 48px;
+    }
+}
+
+/* ---------- LAPTOP: 1366px–1919px ---------- */
+
+@media (min-width: 1366px) and (max-width: 1919px) {
+
+    .hero h1,
+    .hero .hero-title {
+        font-size: 46px;
+    }
+
+    .hero p,
+    .hero .hero-subtext {
+        font-size: 18px;
+    }
+
+    .product-cards .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+
+    .logo img {
+        height: 64px;
+    }
+
+    .flavor-box {
+        padding: 70px 60px;
+    }
+
+    .contact-section {
+        padding: 72px 40px;
+    }
+}
+
+/* ---------- SMALL LAPTOP / TABLET LANDSCAPE:
+   1024px–1365px ---------- */
+
+@media (min-width: 1024px) and (max-width: 1365px) {
+
+    .hero h1,
+    .hero .hero-title {
+        font-size: 40px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .product-cards .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+    }
+
+    .logo img {
+        height: 56px;
+    }
+
+    .flavor-box {
+        padding: 50px 35px;
+    }
+
+    .contact-section {
+        padding: 56px 28px;
+    }
+
+    .contact-section .contact-grid {
+        gap: 24px;
+    }
+
+    .product-cta {
+        padding: 30px 25px;
+    }
+}
+
+/* ---------- TABLET: 768px–1023px ---------- */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    .nav {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .mobile-nav {
+        top: 100%;
+    }
+
+    .header.menu-open .mobile-nav {
+        display: block;
+        width: 240px;
+    }
+
+    .logo img {
+        height: 48px;
+    }
+
+    .hero h1,
+    .hero .hero-title {
+        font-size: 34px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .product-cards .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .flavor-section {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .flavor-box {
+        padding: 30px 20px;
+    }
+
+    .flavor-box h2 {
+        font-size: 24px;
+    }
+
+    .contact-section {
+        padding: 40px 20px;
+    }
+
+    .contact-section .contact-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .events-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+    }
+
+    .brand-product .product-image {
+        max-height: 320px;
+    }
+
+    .product-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 28px 20px;
+    }
+}
+
+/* ---------- LARGE MOBILE: 412px–767px ---------- */
+
+@media (min-width: 412px) and (max-width: 767px) {
+
     .header {
         position: relative;
-        z-index: 1400;
+        padding: 12px 14px;
     }
 
     .nav {
@@ -2249,54 +1046,510 @@ img {
     }
 
     .menu-toggle {
-        display: block !important;
+        display: block;
     }
 
     .mobile-nav {
-        display: none !important;
+        display: none;
         top: 100%;
         right: 12px;
         left: auto;
-        width: auto;
-        min-width: 200px;
-        max-width: calc(100vw - 24px);
+        width: 220px;
     }
 
     .header.menu-open .mobile-nav {
-        display: block !important;
+        display: block;
+    }
+
+    .logo img {
+        height: 46px;
+    }
+
+    #pageFixedIcon {
+        left: auto;
+        right: 14px;
+        top: auto;
+        bottom: 18px;
+        transform: none;
+    }
+
+    #pageFixedIcon::after {
+        left: auto;
+        right: 0;
+        top: auto;
+        bottom: 65px;
+        transform: none;
+        font-size: 13px;
+    }
+
+    .hero {
+        padding: 28px 14px;
+    }
+
+    .hero h1,
+    .hero .hero-title {
+        font-size: 30px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .product-cards .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+
+    .product-card .card-body {
+        padding: 12px;
+    }
+
+    .product-card .title-row {
+        font-size: 16px;
+    }
+
+    .product-card .desc {
+        font-size: 14px;
+    }
+
+    .flavor-section {
+        grid-template-columns: 1fr;
+        margin-top: 25px;
+    }
+
+    .flavor-section .flavor-img {
+        height: auto;
+        max-height: 300px;
+        object-fit: cover;
+    }
+
+    .flavor-box {
+        padding: 25px 20px;
+    }
+
+    .flavor-box h2 {
+        font-size: 20px;
+    }
+
+    .flavor-box p {
+        font-size: 14px;
+    }
+
+    .contact-section {
+        padding: 36px 18px;
+    }
+
+    .contact-section .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .footer {
+        gap: 28px;
+        padding: 30px 18px;
+    }
+
+    .footer-bar-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 0 12px;
+    }
+
+    .events-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .product-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px 15px;
+        gap: 15px;
+    }
+
+    .product-cta .cta-left h2 {
+        font-size: 26px;
     }
 }
 
-.flavor-section .flavor-img {
-    height: auto;
-    max-width: 100%;
-    max-height: none;
-    object-fit: contain;
+/* ---------- SMALL MOBILE: 360px–411px ---------- */
+
+@media (min-width: 360px) and (max-width: 411px) {
+
+    .header {
+        position: relative;
+        padding: 10px 12px;
+    }
+
+    .nav {
+        display: none !important;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .mobile-nav {
+        top: 100%;
+        right: 12px;
+        left: auto;
+        width: 210px;
+    }
+
+    .header.menu-open .mobile-nav {
+        display: block;
+    }
+
+    .logo img {
+        height: 42px;
+    }
+
+    #pageFixedIcon {
+        left: auto;
+        right: 12px;
+        top: auto;
+        bottom: 14px;
+        transform: none;
+        width: 54px;
+        height: 54px;
+    }
+
+    #pageFixedIcon img {
+        width: 32px;
+        height: 32px;
+    }
+
+    #pageFixedIcon::after {
+        left: auto;
+        right: 0;
+        top: auto;
+        bottom: 60px;
+        transform: none;
+        font-size: 12px;
+    }
+
+    .hero {
+        padding: 25px 12px;
+    }
+
+    .hero h1,
+    .hero .hero-title {
+        font-size: 26px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .product-cards.in-view {
+        padding: 28px 12px;
+    }
+
+    .product-cards .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .product-card .card-body {
+        padding: 12px;
+    }
+
+    .product-card .title-row {
+        font-size: 18px;
+    }
+
+    .product-card .desc {
+        font-size: 14px;
+    }
+
+    .flavor-section {
+        grid-template-columns: 1fr;
+        margin-top: 25px;
+    }
+
+    .flavor-section .flavor-img {
+        width: 100%;
+        height: auto;
+        max-height: 220px;
+        object-fit: cover;
+    }
+
+    .flavor-box {
+        padding: 20px 14px;
+    }
+
+    .flavor-box h2 {
+        font-size: 19px;
+    }
+
+    .flavor-box p {
+        font-size: 13px;
+    }
+
+    .contact-section {
+        padding: 30px 14px;
+    }
+
+    .contact-section .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .contact-left h3 {
+        font-size: 16px;
+    }
+
+    .contact-left p.lead {
+        font-size: 14px;
+    }
+
+    .contact-left .contact-info {
+        font-size: 13px;
+    }
+
+    .contact-form label {
+        font-size: 12px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+
+    .contact-form .submit-btn {
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    .footer {
+        gap: 20px;
+        padding: 25px 12px;
+    }
+
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 12px;
+        gap: 14px;
+    }
+
+    .product-cta .cta-left h2 {
+        font-size: 20px;
+    }
 }
 
-.product-cards .product-card img {
-    display: block;
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 280px;
-    margin: 0 auto;
-    object-fit: contain;
-    transition: none;
+/* ---------- EXTRA SMALL MOBILE: 320px–359px ---------- */
+
+@media (max-width: 359px) {
+
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .header {
+        position: relative;
+        padding: 8px 10px;
+    }
+
+    .nav {
+        display: none !important;
+    }
+
+    .menu-toggle {
+        display: block;
+        font-size: 20px;
+    }
+
+    .mobile-nav {
+        top: 100%;
+        right: 10px;
+        left: auto;
+        width: 190px;
+    }
+
+    .header.menu-open .mobile-nav {
+        display: block;
+    }
+
+    .logo img {
+        height: 38px;
+    }
+
+    #pageFixedIcon {
+        left: auto;
+        right: 10px;
+        top: auto;
+        bottom: 12px;
+        transform: none;
+        width: 48px;
+        height: 48px;
+    }
+
+    #pageFixedIcon img {
+        width: 28px;
+        height: 28px;
+    }
+
+    #pageFixedIcon::after {
+        left: auto;
+        right: 0;
+        top: auto;
+        bottom: 54px;
+        transform: none;
+        font-size: 11px;
+        padding: 6px 8px;
+    }
+
+    .hero {
+        padding: 22px 10px;
+    }
+
+    .hero h1,
+    .hero .hero-title {
+        font-size: 22px;
+    }
+
+    .hero p {
+        font-size: 13px;
+    }
+
+    .hero .hero-cta {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .product-cards .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .product-card .card-body {
+        padding: 10px;
+    }
+
+    .product-card .title-row {
+        font-size: 16px;
+    }
+
+    .product-card .desc {
+        font-size: 13px;
+    }
+
+    .flavor-section {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .flavor-section .flavor-img {
+        width: 100%;
+        height: auto;
+        max-height: 180px;
+        object-fit: cover;
+    }
+
+    .flavor-box {
+        padding: 14px 10px;
+    }
+
+    .flavor-box h2 {
+        font-size: 16px;
+    }
+
+    .flavor-box p {
+        font-size: 12px;
+        line-height: 1.45;
+    }
+
+    .contact-section {
+        padding: 25px 10px;
+    }
+
+    .contact-section .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .contact-left h3 {
+        font-size: 15px;
+    }
+
+    .contact-left p.lead {
+        font-size: 13px;
+    }
+
+    .contact-left .contact-info {
+        font-size: 12px;
+    }
+
+    .contact-form label {
+        font-size: 12px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 7px 8px;
+        font-size: 12px;
+    }
+
+    .contact-form .submit-btn {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .events-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .events-listing {
+        padding: 15px 10px 30px;
+    }
+
+    .product-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px 10px;
+        gap: 12px;
+    }
+
+    .product-cta .cta-left h2 {
+        font-size: 18px;
+    }
+
+    .footer {
+        gap: 16px;
+        padding: 20px 10px;
+    }
+
+    .footer-bar-row {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 8px;
+    }
+
+    .copyright-section {
+        font-size: 11px;
+    }
 }
 
-.product-card:hover img {
-    transform: none;
-}
+/* ---------- ACCESSIBILITY ---------- */
 
-.product-section .product-image,
-.brand-product .product-image,
-.product-image {
-    display: block;
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 420px;
-    margin: 0 auto;
-    object-fit: contain;
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
