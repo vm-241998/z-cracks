@@ -1519,9 +1519,9 @@
     }
 
     .product-cards .cards-grid {
-    display: blo;
-    grid-template-columns:  1fr;
-}
+        display: block;
+        grid-template-columns: 1fr;
+    }
 
     /* Very narrow screens */
     .contact-section {
@@ -1716,7 +1716,7 @@ img {
 
 .product-cards .cards-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 22px;
     max-width: 1100px;
     margin: 10px auto;
@@ -2022,12 +2022,12 @@ img {
     padding: 12px 20px;
     border: 2px solid #2E8728;
     background: #F7BC01;
-    color:#012A10;
+    color: #012A10;
     font-weight: 700;
     border-radius: 4px;
 }
 
-.btn-ghost:hover  {
+.btn-ghost:hover {
     background: #012A10;
     color: #F7BC01;
 }
